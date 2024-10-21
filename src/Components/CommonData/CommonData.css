@@ -1,0 +1,135 @@
+.common-data-container {
+    background-color: rgba(0, 0, 0, 0.75);
+    /* Darkened background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Wrapper for the entire data content */
+.common-data-wrapper {
+    border-radius: 12px;
+    width: 80%;
+    max-width: 1000px;
+    padding: 30px;
+    overflow-y: auto;
+    /* Shadow for depth */
+    font-family: 'Arial', sans-serif;
+    /* Modern font */
+}
+
+/* Header styling */
+.common-data-head {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    /* Slightly spaced letters for a premium feel */
+}
+
+/* Table wrapper */
+.common-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+/* Update button styling */
+.common-update-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+    /* Soft shadow for button */
+}
+
+.common-update-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    /* Slight lift effect on hover */
+}
+
+/* Table styling */
+.common-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    table-layout: fixed;
+    /* Ensures consistent column widths */
+}
+
+.common-data-table thead {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    /* Add spacing to the header text */
+}
+
+.common-data-table th,
+.common-data-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-weight: 500;
+    /* Medium font weight for better readability */
+}
+
+.common-data-table th {
+    font-weight: 700;
+    /* Bold headers */
+}
+
+.common-data-table tbody tr:nth-child(even) {
+    background-color: #f7f9fc;
+    /* Light background for alternate rows */
+}
+
+.common-data-table tbody tr:hover {
+    background-color: #e9ecef;
+    /* Highlight rows on hover */
+}
+
+/* Red highlighting for mismatched data */
+td.match-different {
+    background-color: #ffd6d6;
+    color: #d9534f;
+    font-weight: 600;
+}
+
+/* Red highlighting for result mismatch */
+td.result-mismatch {
+    background-color: #d9534f;
+    color: white;
+    font-weight: 700;
+}
+
+/* Scrollable Y-axis for the table */
+.common-table-wrapper {
+    max-height: 80vh;
+    border-radius: 10px;
+    /* Limit table height */
+    overflow-y: auto;
+}

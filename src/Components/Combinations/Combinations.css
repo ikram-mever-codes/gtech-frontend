@@ -1,0 +1,87 @@
+.combinations-table-wrapper {
+    height: 55vh;
+    width: 100%;
+    margin-top: 10px;
+    overflow-x: auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px black;
+}
+
+.post-all-button {
+    width: 10rem;
+    background-color: #0e61d5;
+    color: white;
+    height: 2.5rem;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    transition: 300ms ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.post-all-button:hover {
+    background-color: #1059bf;
+}
+
+.combinations-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.combinations-table thead {
+    background-color: #8EC11B;
+}
+
+.combinations-table th,
+.combinations-table td {
+    padding: 16px 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.combinations-table th {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.combinations-table tbody tr {
+    transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.combinations-table tbody tr:hover {
+    background-color: rgba(142, 193, 27, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.combinations-table tbody td {
+    border-bottom: 1px solid #eee;
+}
+
+.combinations-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+@media (max-width: 768px) {
+
+    .combinations-table th,
+    .combinations-table td {
+        padding: 12px 10px;
+        font-size: 12px;
+    }
+}
