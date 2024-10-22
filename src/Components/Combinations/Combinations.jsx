@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { MdOutlinePostAdd } from "react-icons/md";
 import "./Combinations.css";
 import axios from "axios";
-import JsBarcode from "jsbarcode";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../../assets/constants";
 
 const generateRandomEAN12 = () => {
   let ean12 = "";
@@ -35,7 +35,7 @@ const generateProductWithUniqueEAN = async (ms, parent, parentData) => {
   return {
     supplierItemData: {
       supplier_id: parent[0].supplier_id,
-      url: ms.URL,
+      url: ms.URL, // Use this as the unique identifier for now
       price_rmb: ms.price,
     },
     titemData: {
@@ -74,16 +74,15 @@ const Combinations = ({
   products,
   setProducts,
 }) => {
-  console.log(products);
-
   async function handlePostAll() {
     let permission = confirm("Do you want to post all products?");
     if (!permission) {
       return;
     }
+    toast.loading("Uploading Products...");
     try {
       let res = await axios.post(
-        "http://localhost:8001/products/add",
+        `${BASE_URL}/products/add`,
         { products },
         {
           headers: {
@@ -91,7 +90,7 @@ const Combinations = ({
           },
         }
       );
-
+      toast.dismiss();
       if (res.status !== 200) {
         toast.error(res.data.message);
         return;
@@ -99,6 +98,7 @@ const Combinations = ({
 
       toast.success(res.data.message);
     } catch (error) {
+      toast.dismiss();
       toast.error(error.response?.data?.message || error.message);
     }
   }
@@ -111,12 +111,22 @@ const Combinations = ({
             generateProductWithUniqueEAN(ms, parent, parentData)
           )
         );
-        setProducts((prevProducts) => [...prevProducts, ...newProducts]);
+
+        setProducts((prevProducts) => {
+          // Filter out new products that already exist in prevProducts based on URL or other unique attribute
+          const filteredNewProducts = newProducts.filter((newProduct) => {
+            return !prevProducts.some(
+              (product) =>
+                product.supplierItemData.url === newProduct.supplierItemData.url
+            );
+          });
+          return [...prevProducts, ...filteredNewProducts];
+        });
       }
     };
 
     generateProducts();
-  }, [missingCombinations, parent, parentData]);
+  }, [missingCombinations, parent, setProducts]);
 
   return (
     <>
