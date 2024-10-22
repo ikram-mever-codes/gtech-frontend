@@ -5,7 +5,9 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-logo">
-        <img src="logo.jpg" alt="G Tech Logo" />
+        <Link to={"/"}>
+          <img src="logo.jpg" alt="G Tech Logo" />
+        </Link>
       </div>
       <div
         style={{
@@ -18,7 +20,7 @@ const Header = () => {
       >
         <ul className="header-menu">
           <li>
-            <Link to={"#"}>Home</Link>
+            <Link to={"/"}>Home</Link>
           </li>
           <li>
             <Link to={"#"}>Products</Link>
