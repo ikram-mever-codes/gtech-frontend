@@ -76,6 +76,8 @@ const Home = () => {
           parentData={parentData}
           parent={dbData}
           setParentData={setParentData}
+          setCsvData={setCsvData}
+          setDbData={setDbData}
         />
       )}
       {commonData.length !== 0 && showCommonData && (
@@ -85,7 +87,6 @@ const Home = () => {
           setCommonData={setCommonData}
         />
       )}
-      <h1 className="home-head">Data Comparer and Updater</h1>
       <div className="attribute-selection">
         <button
           onClick={() => {

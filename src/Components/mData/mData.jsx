@@ -14,6 +14,8 @@ const MData = ({
   setParentData,
   parentData,
   parent,
+  setCsvData,
+  setDbData,
 }) => {
   const [tab, setTab] = useState("combinations");
   const [products, setProducts] = useState([]);
@@ -64,9 +66,16 @@ const MData = ({
               parent={parent}
               products={products}
               setProducts={setProducts}
+              setShowMData={setShowMData}
+              setMissingCombinations={setMissingCombinations}
+              setParentData={setParentData}
+              setCsvData={setCsvData}
+              setDbData={setDbData}
             />
           )}
-          {tab === "parent" && <Parent parentData={parentData} />}
+          {tab === "parent" && (
+            <Parent parentData={parentData} parent={parent} />
+          )}
           {tab === "post-settings" && <PostSettings />}
           {tab === "operations" && (
             <Operations

@@ -9,7 +9,7 @@ const Header = () => {
           <img src="logo.jpg" alt="G Tech Logo" />
         </Link>
       </div>
-      <div
+      {/* <div
         style={{
           width: "100%",
           height: "100%",
@@ -17,8 +17,8 @@ const Header = () => {
           justifyContent: "center",
           alignItems: "center",
         }}
-      >
-        <ul className="header-menu">
+      > */}
+        {/* <ul className="header-menu">
           <li>
             <Link to={"/"}>Home</Link>
           </li>
@@ -31,11 +31,11 @@ const Header = () => {
           <li>
             <Link to={"#"}>Contact</Link>
           </li>
-        </ul>
-      </div>
-      <div className="header-profile">
+        </ul> */}
+      {/* </div> */}
+      {/* <div className="header-profile">
         <button>Logout</button>
-      </div>
+      </div> */}
     </header>
   );
 };

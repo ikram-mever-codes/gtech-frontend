@@ -35,14 +35,14 @@ const generateProductWithUniqueEAN = async (ms, parent, parentData) => {
   return {
     supplierItemData: {
       supplier_id: parent[0].supplier_id,
-      url: ms.URL, // Use this as the unique identifier for now
+      url: ms.URL,
       price_rmb: ms.price,
     },
     titemData: {
       parent_id: parentData.id,
       itemID_DE: uniqueEAN,
       parent_no_de: parentData.parent_no_de,
-      supp_cat: "GBL",
+      supp_cat: parent[0].supp_cat,
       ean: uniqueEAN,
       tariff_code: parent[0].tariff_code,
       taric_id: parent[0].taric_id,
@@ -50,7 +50,8 @@ const generateProductWithUniqueEAN = async (ms, parent, parentData) => {
       width: 0,
       height: 0,
       length: 0,
-      item_name_cn: parentData.parent_name_en,
+      item_name_cn: parentData.parent_name_cn,
+      item_name_de: parentData.parent_name_de,
       item_name: parentData.parent_name_en,
       RMB_Price: ms.price,
     },
@@ -73,6 +74,10 @@ const Combinations = ({
   parent,
   products,
   setProducts,
+  setShowMData,
+  setMissingCombinations,
+  setDbData,
+  setCsvData,
 }) => {
   async function handlePostAll() {
     let permission = confirm("Do you want to post all products?");
@@ -96,6 +101,11 @@ const Combinations = ({
         return;
       }
 
+      setShowMData(false);
+      setMissingCombinations([]);
+      setProducts([]);
+      setCsvData([]);
+      setDbData(null);
       toast.success(res.data.message);
     } catch (error) {
       toast.dismiss();
@@ -113,7 +123,6 @@ const Combinations = ({
         );
 
         setProducts((prevProducts) => {
-          // Filter out new products that already exist in prevProducts based on URL or other unique attribute
           const filteredNewProducts = newProducts.filter((newProduct) => {
             return !prevProducts.some(
               (product) =>
