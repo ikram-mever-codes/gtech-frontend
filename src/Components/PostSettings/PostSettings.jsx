@@ -36,6 +36,9 @@ const PostSettings = () => {
   };
 
   const handleCreate = async () => {
+    if (!formData.name || !formData.value) {
+      return toast.error("Incomplete Fields");
+    }
     if (/\s/.test(formData.name)) {
       toast.error("Name cannot contain spaces.");
       return;
@@ -158,6 +161,7 @@ const PostSettings = () => {
                     <td>{constant.value}</td>
                     <td>
                       <button
+                        className="post-settings-button"
                         onClick={() => {
                           setEditingId(constant.id);
                           setFormData({
@@ -178,6 +182,7 @@ const PostSettings = () => {
                       <button
                         onClick={() => handleDelete(constant.id)}
                         disabled={loading}
+                        className="post-settings-button"
                         style={{
                           display: "flex",
                           justifyContent: "center",
@@ -221,10 +226,29 @@ const PostSettings = () => {
             onChange={handleInputChange}
             placeholder="Constant Value"
           />
-          <button onClick={handleCreate} disabled={loading}>
-            Create
-          </button>
-          <button onClick={() => setIsCreating(false)}>Cancel</button>
+          <div
+            style={{
+              width: "100%",
+              height: "max-content",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <button
+              onClick={handleCreate}
+              disabled={loading}
+              className="post-settings-button"
+            >
+              Create
+            </button>
+            <button
+              className="post-settings-button"
+              onClick={() => setIsCreating(false)}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       )}
     </div>

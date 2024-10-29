@@ -1,87 +1,121 @@
-.combinations-table-wrapper {
-    height: 55vh;
-    width: 100%;
-    margin-top: 10px;
-    overflow-x: auto;
-    border-radius: 5px;
-    box-shadow: 0px 0px 4px black;
+.combinations-table-wrapper,
+.common-table-wrapper {
+  height: 55vh;
+  width: 100%;
+  overflow-x: auto;
 }
 
-.post-all-button {
-    width: 10rem;
-    background-color: #0e61d5;
-    color: white;
-    height: 2.5rem;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    font-size: 17px;
-    transition: 300ms ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
+.post-all-button,
+.common-update-button {
+  width: 10rem;
+  background-color: #0e61d5;
+  color: white;
+  height: 2.5rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  margin: 10px 0px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 300ms ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-.post-all-button:hover {
-    background-color: #1059bf;
+.post-all-button:hover,
+.common-update-button:hover {
+  background-color: #0c4ea5;
 }
 
-.combinations-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border-radius: 5px;
-    overflow: hidden;
-    background-color: white;
+/* Table Styling */
+.combinations-table,
+.common-data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.combinations-table thead {
-    background-color: #8EC11B;
+.combinations-table thead,
+.common-data-table thead {
+  background-color: #8ec11b;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .combinations-table th,
-.combinations-table td {
-    padding: 16px 20px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: background-color 0.3s ease-in-out;
+.combinations-table td,
+.common-data-table th,
+.common-data-table td {
+  padding: 16px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
 }
 
-.combinations-table th {
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
+.combinations-table .common-data-table td,
+td {
+  border: 1px solid #ddd;
+  color: #333;
+  font-weight: 400;
 }
 
-.combinations-table tbody tr {
-    transition: box-shadow 0.3s, background-color 0.3s;
+.combinations-table th:last-child,
+.combinations-table td:last-child,
+.common-data-table th:last-child,
+.common-data-table td:last-child {
+  border-right: none;
 }
 
-.combinations-table tbody tr:hover {
-    background-color: rgba(142, 193, 27, 0.1);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.combinations-table tbody tr,
+.common-data-table tbody tr {
+  transition: box-shadow 0.2s, background-color 0.2s;
 }
 
-.combinations-table tbody td {
-    border-bottom: 1px solid #eee;
+.combinations-table tbody tr:nth-child(even),
+.common-data-table tbody tr:nth-child(even) {
+  background-color: #f7f9fc;
 }
 
-.combinations-table tbody tr:last-child td {
-    border-bottom: none;
+.combinations-table tbody tr:hover,
+.common-data-table tbody tr:hover {
+  background-color: rgba(142, 193, 27, 0.07);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.combinations-table tbody td,
+.common-data-table tbody td {
+  border-bottom: 1px solid #e6eaf0;
+}
+.combinations-table thead tr th,
+.common-data-table thead tr th {
+  border-bottom: 1px solid #e6eaf0;
+}
+
+.combinations-table tbody tr:last-child td,
+.common-data-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 @media (max-width: 768px) {
-
-    .combinations-table th,
-    .combinations-table td {
-        padding: 12px 10px;
-        font-size: 12px;
-    }
+  .combinations-table th,
+  .combinations-table td,
+  .common-data-table th,
+  .common-data-table td {
+    padding: 12px 8px;
+    font-size: 13px;
+  }
 }

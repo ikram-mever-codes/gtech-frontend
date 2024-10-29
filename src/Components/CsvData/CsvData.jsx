@@ -132,7 +132,6 @@ const CsvData = ({
   };
 
   const handleModalSubmit = (header, type, value) => {
-    // Reset modifications for the current header
     const updatedModifications = {
       ...modifications,
       [header]: {
@@ -146,7 +145,7 @@ const CsvData = ({
       },
     };
 
-    if (type === "Find & Replace") {
+    if (type === "findReplace") {
       const [find, replace] = value.split("||");
       updatedModifications[header].findReplace = { find, replace };
     }

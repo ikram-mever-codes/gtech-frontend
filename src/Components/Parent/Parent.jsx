@@ -2,7 +2,6 @@ import React from "react";
 import "./Parent.css";
 
 const Parent = ({ parentData, parent }) => {
-  const isActive = parentData.isActive === "Y";
   return (
     <div className="parent-container">
       <div className="parent-row">
@@ -34,13 +33,8 @@ const Parent = ({ parentData, parent }) => {
       </div>
 
       <div className="parent-row">
-        <div className="parent-status">
-          <button
-            className={`status-btn ${isActive ? "active" : "not-active"}`}
-          >
-            {isActive ? "Active" : "Not Active"}
-          </button>
-        </div>
+        <div className="parent-label">Is Active</div>
+        <div className="parent-value">{parentData.is_active}</div>
       </div>
     </div>
   );

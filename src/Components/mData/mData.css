@@ -1,5 +1,5 @@
 .mdata-container {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(62, 61, 61, 0.712);
   position: fixed;
   top: 0;
   left: 0;
@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
+  backdrop-filter: blur(8px);
 }
 
 .mdata-modal {

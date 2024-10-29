@@ -68,7 +68,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      {missingCombinations.length !== 0 && showMData && (
+      {showMData && (
         <MData
           setShowMData={setShowMData}
           missingCombinations={missingCombinations}
@@ -78,15 +78,11 @@ const Home = () => {
           setParentData={setParentData}
           setCsvData={setCsvData}
           setDbData={setDbData}
-        />
-      )}
-      {commonData.length !== 0 && showCommonData && (
-        <CommonData
-          setShowCommonData={setShowCommonData}
           commonData={commonData}
           setCommonData={setCommonData}
         />
       )}
+
       <div className="attribute-selection">
         <button
           onClick={() => {
@@ -94,39 +90,17 @@ const Home = () => {
               toast.error("Please Load Master Data and Csv Data!");
               return;
             }
-
             if (!checkAttributesEquality()) {
               toast.error(
                 "The number of attributes in CSV and DB data are not equal. Please make sure both have the same number of attributes."
               );
               return;
             }
-
             compareValues();
             setShowMData(true);
           }}
         >
           <FaExchangeAlt /> Perform Comparison
-        </button>
-        <button
-          onClick={() => {
-            if (csvData.length === 0 || dbData === null) {
-              toast.error("Please Load Master Data and Csv Data!");
-              return;
-            }
-
-            if (!checkAttributesEquality()) {
-              toast.error(
-                "The number of attributes in CSV and DB data are not equal. Please make sure both have the same number of attributes."
-              );
-              return;
-            }
-
-            compareValues();
-            setShowCommonData(true);
-          }}
-        >
-          <FaExchangeAlt /> Update Common
         </button>
       </div>
       <div className="home-box">

@@ -26,8 +26,7 @@ const calculateEAN13Checksum = (ean12) => {
 const generateEAN13 = () => {
   const ean12 = generateRandomEAN12();
   const checksum = calculateEAN13Checksum(ean12);
-  const ean13 = `${ean12}${checksum}`;
-  return ean13;
+  return `${ean12}${checksum}`;
 };
 
 const generateProductWithUniqueEAN = async (ms, parent, parentData) => {
@@ -80,10 +79,11 @@ const Combinations = ({
   setCsvData,
 }) => {
   async function handlePostAll() {
-    let permission = confirm("Do you want to post all products?");
-    if (!permission) {
+    if (products.some((product) => product.titemData.weight === 0)) {
+      toast.error("Weight of one or more items is 0");
       return;
     }
+    if (!confirm("Do you want to post all products?")) return;
     toast.loading("Uploading Products...");
     try {
       let res = await axios.post(
@@ -100,7 +100,6 @@ const Combinations = ({
         toast.error(res.data.message);
         return;
       }
-
       setShowMData(false);
       setMissingCombinations([]);
       setProducts([]);
@@ -139,50 +138,66 @@ const Combinations = ({
 
   return (
     <>
-      <button className="post-all-button" onClick={handlePostAll}>
-        <MdOutlinePostAdd style={{ fontSize: "20px" }} />
-        Post All
-      </button>
-      <div className="combinations-table-wrapper">
-        <table className="combinations-table">
-          <thead>
-            <tr>
-              <th>Item Name</th>
-              <th>Attribute 1</th>
-              <th>Attribute 2</th>
-              <th>Attribute 3</th>
-              <th>Price (RMB)</th>
-              <th>EAN</th>
-              <th>Supp Cat</th>
-              <th>Weight</th>
-              <th>Height</th>
-              <th>Length</th>
-              <th>Width</th>
-              <th>Tariff Code</th>
-              <th>Taric ID</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product, index) => (
-              <tr key={index}>
-                <td>{product.titemData.item_name}</td>
-                <td>{product.variationValuesData.value_de}</td>
-                <td>{product.variationValuesData.value_de_2}</td>
-                <td>{product.variationValuesData.value_de_3}</td>
-                <td>{product.supplierItemData.price_rmb}</td>
-                <td>{product.titemData.ean}</td>
-                <td>{product.titemData.supp_cat}</td>
-                <td>{product.titemData.weight}</td>
-                <td>{product.titemData.height}</td>
-                <td>{product.titemData.width}</td>
-                <td>{product.titemData.length}</td>
-                <td>{product.titemData.tariff_code}</td>
-                <td>{product.titemData.taric_id}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {missingCombinations.length === 0 ? (
+        <div
+          style={{
+            width: "100%",
+            height: "60vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h1 style={{ fontWeight: 600 }}>Oops, No Combinations Found</h1>
+        </div>
+      ) : (
+        <>
+          <button className="post-all-button" onClick={handlePostAll}>
+            <MdOutlinePostAdd style={{ fontSize: "20px" }} />
+            Post All
+          </button>
+          <div className="combinations-table-wrapper">
+            <table className="combinations-table">
+              <thead>
+                <tr>
+                  <th>Item Name</th>
+                  <th>Attribute 1</th>
+                  <th>Attribute 2</th>
+                  <th>Attribute 3</th>
+                  <th>Price (RMB)</th>
+                  <th>EAN</th>
+                  <th>Supp Cat</th>
+                  <th>Weight</th>
+                  <th>Height</th>
+                  <th>Length</th>
+                  <th>Width</th>
+                  <th>Tariff Code</th>
+                  <th>Taric ID</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map((product, index) => (
+                  <tr key={index}>
+                    <td>{product.titemData.item_name}</td>
+                    <td>{product.variationValuesData.value_de}</td>
+                    <td>{product.variationValuesData.value_de_2}</td>
+                    <td>{product.variationValuesData.value_de_3}</td>
+                    <td>{product.supplierItemData.price_rmb}</td>
+                    <td>{product.titemData.ean}</td>
+                    <td>{product.titemData.supp_cat}</td>
+                    <td>{product.titemData.weight}</td>
+                    <td>{product.titemData.height}</td>
+                    <td>{product.titemData.width}</td>
+                    <td>{product.titemData.length}</td>
+                    <td>{product.titemData.tariff_code}</td>
+                    <td>{product.titemData.taric_id}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </>
   );
 };

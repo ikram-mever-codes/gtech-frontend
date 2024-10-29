@@ -5,6 +5,7 @@ import Parent from "../Parent/Parent";
 import "./mData.css";
 import Operations from "../Operations/Operations";
 import PostSettings from "../PostSettings/PostSettings";
+import CommonData from "../CommonData/CommonData";
 
 const MData = ({
   missingCombinations,
@@ -16,8 +17,10 @@ const MData = ({
   parent,
   setCsvData,
   setDbData,
+  commonData,
+  setCommonData,
 }) => {
-  const [tab, setTab] = useState("combinations");
+  const [tab, setTab] = useState("commonData");
   const [products, setProducts] = useState([]);
 
   return (
@@ -28,11 +31,18 @@ const MData = ({
           onClick={() => {
             setShowMData(false);
             setMissingCombinations([]);
+            setCommonData([]);
           }}
         >
           <FaRegWindowClose />
         </button>
         <div className="mdata-tabs">
+          <button
+            className={tab === "commonData" ? "active-tab" : ""}
+            onClick={() => setTab("commonData")}
+          >
+            Compare Data
+          </button>{" "}
           <button
             className={tab === "combinations" ? "active-tab" : ""}
             onClick={() => setTab("combinations")}
@@ -53,12 +63,15 @@ const MData = ({
           </button>
           <button
             onClick={() => setTab("post-settings")}
-            className={tab === "post-sttings" ? "active-tab" : ""}
+            className={tab === "post-settings" ? "active-tab" : ""}
           >
             Post Settings
           </button>
         </div>
         <div className="mdata-content">
+          {tab === "commonData" && (
+            <CommonData commonData={commonData} setCommonData={setCommonData} />
+          )}
           {tab === "combinations" && (
             <Combinations
               missingCombinations={missingCombinations}
