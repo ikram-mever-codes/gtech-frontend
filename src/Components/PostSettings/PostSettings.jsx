@@ -102,114 +102,15 @@ const PostSettings = () => {
     <div className="post-settings-container">
       <ToastContainer />
       <h2 className="post-settings-title">Manage Constants</h2>
-
-      {loading && <p className="loading-message">Loading constants...</p>}
-
-      <table className="constants-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Value</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {constants.length === 0 && !loading ? (
-            <tr>
-              <td colSpan="3" className="alt-message">
-                No constants found. Please add some!
-              </td>
-            </tr>
-          ) : (
-            constants.map((constant) => (
-              <tr key={constant.id}>
-                {editingId === constant.id ? (
-                  <>
-                    <td>
-                      <input
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="Name"
-                        className="post-settings-input"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        name="value"
-                        value={formData.value}
-                        onChange={handleInputChange}
-                        className="post-settings-input"
-                        placeholder="Value"
-                      />
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => handleEdit(constant.id)}
-                        disabled={loading}
-                      >
-                        Save
-                      </button>
-                      <button onClick={() => setEditingId(null)}>Cancel</button>
-                    </td>
-                  </>
-                ) : (
-                  <>
-                    <td>{constant.name}</td>
-                    <td>{constant.value}</td>
-                    <td>
-                      <button
-                        className="post-settings-button"
-                        onClick={() => {
-                          setEditingId(constant.id);
-                          setFormData({
-                            name: constant.name,
-                            value: constant.value,
-                          });
-                        }}
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          gap: "5px",
-                        }}
-                      >
-                        <MdEdit style={{ fontSize: "18px", color: "white" }} />{" "}
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDelete(constant.id)}
-                        disabled={loading}
-                        className="post-settings-button"
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          gap: "5px",
-                        }}
-                      >
-                        <MdDelete
-                          style={{ fontSize: "18px", color: "white" }}
-                        />{" "}
-                        Delete
-                      </button>
-                    </td>
-                  </>
-                )}
-              </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-
       {!isCreating && (
-        <button onClick={() => setIsCreating(true)} className="add-new-button">
+        <button
+          style={{ margin: "10px auto" }}
+          onClick={() => setIsCreating(true)}
+          className="add-new-button"
+        >
           Add New Constant
         </button>
       )}
-
       {isCreating && (
         <div className="constant-create">
           <input
@@ -251,6 +152,111 @@ const PostSettings = () => {
           </div>
         </div>
       )}
+      {loading && <p className="loading-message">Loading constants...</p>}
+      <div className="constant-table-wrapper">
+        <table className="constants-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {constants.length === 0 && !loading ? (
+              <tr>
+                <td colSpan="3" className="alt-message">
+                  No constants found. Please add some!
+                </td>
+              </tr>
+            ) : (
+              constants.map((constant) => (
+                <tr key={constant.id}>
+                  {editingId === constant.id ? (
+                    <>
+                      <td>
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="Name"
+                          className="post-settings-input"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          name="value"
+                          value={formData.value}
+                          onChange={handleInputChange}
+                          className="post-settings-input"
+                          placeholder="Value"
+                        />
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => handleEdit(constant.id)}
+                          disabled={loading}
+                        >
+                          Save
+                        </button>
+                        <button onClick={() => setEditingId(null)}>
+                          Cancel
+                        </button>
+                      </td>
+                    </>
+                  ) : (
+                    <>
+                      <td>{constant.name}</td>
+                      <td>{constant.value}</td>
+                      <td>
+                        <button
+                          className="post-settings-button"
+                          onClick={() => {
+                            setEditingId(constant.id);
+                            setFormData({
+                              name: constant.name,
+                              value: constant.value,
+                            });
+                          }}
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            gap: "5px",
+                          }}
+                        >
+                          <MdEdit
+                            style={{ fontSize: "18px", color: "white" }}
+                          />{" "}
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDelete(constant.id)}
+                          disabled={loading}
+                          className="post-settings-button"
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            gap: "5px",
+                          }}
+                        >
+                          <MdDelete
+                            style={{ fontSize: "18px", color: "white" }}
+                          />{" "}
+                          Delete
+                        </button>
+                      </td>
+                    </>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
