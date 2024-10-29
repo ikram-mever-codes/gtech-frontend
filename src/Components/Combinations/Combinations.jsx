@@ -80,7 +80,7 @@ const Combinations = ({
 }) => {
   async function handlePostAll() {
     if (products.some((product) => product.titemData.weight === 0)) {
-      toast.error("Weight of one or more items is 0");
+      alert("Weight of one or more items is 0");
       return;
     }
     if (!confirm("Do you want to post all products?")) return;
@@ -105,7 +105,8 @@ const Combinations = ({
       setProducts([]);
       setCsvData([]);
       setDbData(null);
-      toast.success(res.data.message);
+      alert("Products Added Successfully!");
+      // toast.success(res.data.message);
     } catch (error) {
       toast.dismiss();
       toast.error(error.response?.data?.message || error.message);
