@@ -9,7 +9,7 @@ const cleanValue = (value) => {
   return value ? value.replace(/Ø/g, "") : "noAttr";
 };
 
-const handleDataLoad = async (parent_name, setDbData, setParentData) => {
+export const handleDataLoad = async (parent_name, setDbData, setParentData) => {
   try {
     const res = await axios.get(`${BASE_URL}/data/${parent_name}`, {
       headers: {
