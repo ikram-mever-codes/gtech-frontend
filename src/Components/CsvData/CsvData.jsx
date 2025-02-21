@@ -8,7 +8,7 @@ import {
   FaSync,
   FaUpload,
 } from "react-icons/fa";
-import { MdFunctions } from "react-icons/md";
+import { MdClass, MdExplore, MdFunctions } from "react-icons/md";
 import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import "./CsvData.css";
@@ -438,14 +438,30 @@ const CsvData = ({
               </div>
             </div>
           ) : (
-            <div className="csv-upload-box">
+            <div className="csv-upload-box flex flex-col gap-5">
+              <div
+                className="csv-upload"
+                onClick={() => {
+                  window.location.href = "/products";
+                }}
+              >
+                <MdExplore fontSize={25} /> <h3>Browse Products</h3>
+              </div>
+              <div
+                className="csv-upload"
+                onClick={() => {
+                  window.location.href = "/classifications";
+                }}
+              >
+                <MdClass fontSize={25} /> <h3>Browse Classifications</h3>
+              </div>{" "}
               <div
                 className="csv-upload"
                 onClick={() => {
                   document.querySelector("#csv-input").click();
                 }}
               >
-                <FaUpload fontSize={35} /> <h3>Upload CSV File</h3>
+                <FaUpload fontSize={25} /> <h3>Upload CSV File</h3>
               </div>
               <input
                 id="csv-input"

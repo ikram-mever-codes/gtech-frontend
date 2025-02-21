@@ -70,7 +70,12 @@ const MData = ({
         </div>
         <div className="mdata-content">
           {tab === "commonData" && (
-            <CommonData commonData={commonData} setCommonData={setCommonData} />
+            <CommonData
+              commonData={commonData}
+              setCommonData={setCommonData}
+              setParentData={setParentData}
+              setDbData={setDbData}
+            />
           )}
           {tab === "combinations" && (
             <Combinations
